@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-// TODO: Auto-generated Javadoc
 /**
  * Classe rappresentate la struttura Biblioteca.
  */
@@ -64,9 +63,11 @@ public class Biblioteca {
       */
      public void inserisciArticolo(int tipo,String args,Biblioteca b) {
     	 StringTokenizer st = new StringTokenizer(args,"|");
+    	 int indice;
     	 String temp[] = new String[st.countTokens()];
+    	 indice=temp.length;
     	 
-    	 for (int i=0; i<=st.countTokens(); i++) {
+    	 for (int i=0; i<indice; i++) {
     		 temp[i] = st.nextToken();
      	 }
     	 
@@ -75,7 +76,7 @@ public class Biblioteca {
     		 articoli.add(l);
     		 System.out.println(this.nome + ": Libro inserito correttamente");
     	 } else if (tipo==2) {
-    		 Miscellanea m = new Miscellanea(temp[0],temp[1],temp[2],temp[3],b, temp[4]);
+    		 Miscellanea m = new Miscellanea(temp[0],temp[1],temp[2],temp[3],b,temp[4]);
     		 articoli.add(m);
     		 System.out.println(this.nome + ": Miscellanea inserita correttamente");
     	 } else {
@@ -87,37 +88,49 @@ public class Biblioteca {
      * Rispetto all'srs e' stato lievemente cambiato il senso della ricerca 
      * i req di implementazione risultavano vaghi. Si e' fatta fede all'sdd.
      *
-     * @param arg il titolo dell'opera ricercata 
+     * @param titolo il titolo dell'opera ricercata 
      * @param tipo libro o miscellanea
      * @param filtri ottenuti dalla gui
      * @return <Articolo> lista di articoli trovati
      */
-    public ArrayList<Articolo> ricercaArticolo ( String arg , int tipo, String filtri[] ) {
+    public ArrayList<Articolo> ricercaArticolo ( String titolo , int tipo, String filtri[] ) {
     	ArrayList<Articolo> trovati = new ArrayList<Articolo>();
     	
-    	for (Articolo a : articoli) {
-    		if ( arg == null) {
+    	if (tipo == 1) {
+    	 for (Articolo a : articoli) {
+    		if ( titolo == null && (a instanceof Libro) ) {
     			 if  ( (a.getAutore().equals(filtri[0])) || (a.getGenere().equals(filtri[1])) ) {
     				 trovati.add(a);
-    	    } else if (arg != null && a.getTitolo().contains(arg)) {
+    			 }
+    		} else if ((titolo != null) && ( a.getTitolo().contains(titolo) ) && (a instanceof Libro) ) {
      			     trovati.add(a);
     		}
-    		}
-    	} 
+    	 }
+    	}
+    	else if (tipo == 2) {
+       	   for (Articolo a : articoli) {
+     		  if ( titolo == null && (a instanceof Miscellanea) ) {
+     			 if  ( (a.getAutore().equals(filtri[0])) || (a.getGenere().equals(filtri[1])) ) {
+     				 trovati.add(a);
+     			 }
+     		  } else if ((titolo != null) && ( a.getTitolo().contains(titolo) ) && (a instanceof Miscellanea) ) {
+      			     trovati.add(a);
+     	      }
+     	  }
+    	} else {
+          	 for (Articolo a : articoli) {
+        		if ( titolo == null ) {
+        			 if  ( (a.getAutore().equals(filtri[0])) || (a.getGenere().equals(filtri[1])) ) {
+        				 trovati.add(a);
+        			 }
+        		} else if (a.getTitolo().contains(titolo)) {
+         			     trovati.add(a);
+        		}
+        	 }
+        }
     return trovati;
     }
     
-    /**
-     * visualizzaPrestitiTotali
-     * non implementato
-     *
-     * @return Prestito[*]
-     */
-    public ArrayList<Prestito> visualizzaPrestitiTotali (  )
-    {
-    	return null;
-    }
-
     /**
 	 * Gets the nome.
 	 *
@@ -126,5 +139,16 @@ public class Biblioteca {
     public String getNome() {
 		return nome;
 	}
+    
+    /**
+   	 * Gets the articoli.
+   	 *
+   	 * @return gli articoli presenti nella biblioteca
+   	 */
+	public ArrayList<Articolo> getArticoli() {
+		return articoli;
+	}
+    
+    
 }
 

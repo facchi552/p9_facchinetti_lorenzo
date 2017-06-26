@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * Classe rappresentate la struttura dell'Sbu.
  */
@@ -47,10 +48,10 @@ public class Sbu {
 		}
     
     /**
-     * Autenticazione
+     * Autenticazione.
      *
-     * @param username 
-     * @param password 
+     * @param username the username
+     * @param password the password
      * @return boolean return 1 se autenticazione avvenuta 0 se fallita
      */
     public boolean login ( String username, String password ) {
@@ -69,35 +70,40 @@ public class Sbu {
     }
     
     /**
-     * Metodo che effettua la ricerca articolo all'interno di ogni biblioteca appartenente all'sbu
+     * Metodo che effettua la ricerca articolo all'interno di ogni biblioteca appartenente all'sbu.
      *
      * @param arg Il titolo dell'opera ricercata
-     * @param tipo 
-     * @param filtri
+     * @param tipo the tipo
+     * @param filtri the filtri
      * @return <Articolo> return gli articoli appartenenti al Sbu
      */
-    public ArrayList<Articolo> ricercaArticolo ( String arg , int tipo, String filtri[] ) {
+    public ArrayList<Articolo> ricercaArticolo ( String titolo , int tipo, String filtri[] ) {
     	ArrayList<Articolo> articoliTrovati = new ArrayList<Articolo>();
+    	ArrayList<Articolo> temp = new ArrayList<Articolo>();
+    	
     	for (Biblioteca b : biblioteche) {
-    		articoliTrovati = b.ricercaArticolo(arg, tipo, filtri);
+    		temp=b.ricercaArticolo(titolo, tipo, filtri);
+    			for (Articolo art : temp) {
+    				articoliTrovati.add(art);
+    			}
     	}
     	
-    	return articoliTrovati;
+    return articoliTrovati;
     }
     
     /**
-     * Metodo utilizzato per la funzione consiglia libro
+     * Metodo utilizzato per la funzione consiglia libro.
      *
      * @param testo the testo
      */
     public void consigliaLibro ( String testo ) {
     	
-    	articoliConsigliati.add(testo + "pending");
+    	articoliConsigliati.add(testo + " |pending|");
     	System.out.println(this.nome + ": L'articolo consigliato e' stato registrato ");
     }
     
     /**
-     * Metodo per la ricerca dell'utente con nome e/o cognome
+     * Metodo per la ricerca dell'utente con nome e/o cognome.
      *
      * @param arg Nome e Cognome utente
      * @return ArrayList<Persona>
@@ -122,26 +128,10 @@ public class Sbu {
     return trovati;
     }
     
-    /**
-     * Metodo per la ricerca dell'utente con id
-     *
-     * @param id
-     * @return trovato 
-     */
-    public Persona ricercaUtente ( int id ) {
-    	Persona trovato = null;
-    	for (Persona p : persone) {
-    		if (p.getId()==id) {
-    		trovato=p;
-    		}
-    	}
-    return trovato;
-    }
-    
     
     /**
      * Metodo utile per verificare l'univocita' di un utente nel sistema
-     * Non presente nei diagrammi ma utile in fase implementativa
+     * Non presente nei diagrammi ma utile in fase implementativa.
      *
      * @param cf the cf
      * @return Boolean 1 se utente gia' registrato, 0 se non e' registrato
@@ -156,9 +146,9 @@ public class Sbu {
     }
     
     /**
-     * Metodo per l'inserimento di un utente a sistema
+     * Metodo per l'inserimento di un utente a sistema.
      *
-     * @param utente 
+     * @param utente the utente
      */
     public void inserisciUtente ( Persona utente ) {
     	if (utenteIsUnivoco(utente.getCodiceFiscale())) {
@@ -204,7 +194,7 @@ public class Sbu {
     }
     
     /**
-     * Non implementato
+     * Non implementato.
      *
      * @param nome the nome
      * @param cognome the cognome
@@ -249,14 +239,45 @@ public class Sbu {
     }
 
     /**
-     * Aggiunge una biblioteca al sistema
-     * 
+     * Aggiunge una biblioteca al sistema.
+     *
      * @param biblio rappresenta la biblitoeca da aggiungere al sistema
      * @return String[*]
      */
     public void addBiblioteca (Biblioteca biblio) {
 	this.biblioteche.add(biblio);
     }
+
+	
+	/**
+	 * Gets the biblioteche.
+	 *
+	 * @return the biblioteche
+	 */
+	public ArrayList<Biblioteca> getBiblioteche() {
+		return biblioteche;
+	}
+
+	
+	/**
+	 * Gets the persone.
+	 *
+	 * @return the persone
+	 */
+	public ArrayList<Persona> getPersone() {
+		return persone;
+	}
+
+
+	/**
+	 * Gets the articoli consigliati
+	 *
+	 * @retrun gli articoli consigliati
+	 */
+	public ArrayList<String> getArticoliConsigliati() {
+		return articoliConsigliati;
+	}
+    
     
 }
 

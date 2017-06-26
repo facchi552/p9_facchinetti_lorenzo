@@ -16,7 +16,10 @@ import java.util.Date;
 public class Prestito {
     
     /**  Attributes. */
-    private int ID;
+    private int id;
+    
+    /** The totale. */
+    private static int totale=0; // tiene conto di tutti i prestiti del sistema
     
     /** The data inizio. */
     private Date dataInizio;
@@ -34,26 +37,18 @@ public class Prestito {
     private UtenteRegistrato utenteAssegnatario;
     
     
-    /**
-     * Operation
-     *
-     * @param dataF
-     * @return boolean
-     */
-    public boolean prolungaPrestito ( Date dataF ) {
-    	return true;
-    }
     
-    /**
-     * Operation.
-     *
-     * @param id the id
-     * @return Bool
-     */
-    public Boolean ricercaPrestito ( int id ) {
-      
-    	return true;
-    }
+    public Prestito(Date dataInizio, Date dataFine, int rinnovi, Articolo articolo,
+			UtenteRegistrato utenteAssegnatario) {
+		super();
+		this.id=totale;
+		totale++; // incremento il numero totale di persone nel sistema
+		this.dataInizio = dataInizio;
+		this.dataFine = dataFine;
+		this.rinnovi = rinnovi;
+		this.articolo = articolo;
+		this.utenteAssegnatario = utenteAssegnatario;
+	}
    
 }
 

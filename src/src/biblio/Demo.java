@@ -65,32 +65,30 @@ public class Demo {
 		biblia.inserisciArticolo(1, "Titolo3|Autore3|Genere3|collocazione3|isbn|casa editrice|565", biblia);
 		System.out.println("\n# Esecuzione Uc2 -3a #");
 		biblio.inserisciArticolo(2, "Titolo1|Autore1|Genere1|collocazione1|dvd", biblia);
-		biblio.inserisciArticolo(2, "Titolo2|Autore2|Genere1|collocazione2|rivista", biblio);
+		biblio.inserisciArticolo(2, "MISC2|Autore2|Genere1|collocazione2|rivista", biblio);
 		
 		/* Preparazione ed esecuzione Uc7 riferimento figura 10 sdd*/
 		System.out.println("\n# Esecuzione Uc7: Ricerca Utente Registrato #");
-		demoRicercaUtenteN ("Mario| Rossi"); // si e' reso necessario ai fini della dimostrazione invocare un metodo aggiuntivo 
+		demoRicercaUtenteN ("Mario|Rossi"); // si e' reso necessario ai fini della dimostrazione invocare un metodo aggiuntivo 
 		System.out.println("\n# Esecuzione Uc7 -4b #");
 		demoRicercaUtenteN ("Non| Trovare");
-		System.out.println("\n# Esecuzione Uc7 -2a (ricerca per id) #");
-		demoRicercaUtenteI (1); // si e' reso necessario ai fini della dimostrazione invocare un metodo aggiuntivo 
-		System.out.println("\n# Esecuzione Uc7 -2a (ricerca per id) #");
-		demoRicercaUtenteI (2);
 		
-		/* Preparazione ed esecuzione Uc27 riferimento parziale aa figura 3 sdd*/
-		System.out.println("\n# Esecuzione Uc27: Cosniglia Acquisto nuovi libri #");
+		/* Preparazione ed esecuzione Uc27 riferimento parziale a figura 3 sdd*/
+		System.out.println("\n# Esecuzione Uc27: Consiglia Acquisto nuovi libri #");
 		sistema.consigliaLibro("Vorrei che venisse acquistato il libro xxx dell'autore yyy");
 		
 		/* Preparazione ed esecuzione Uc3 riferimento figura 7 sdd*/
 		System.out.println("\n# Esecuzione Uc3: Ricerca Articolo #");
-		sistema.addBiblioteca(biblio); 
-		System.out.println("\n# Esecuzione Uc3 -4d (ricerca con filtro: genere) #");
 		sistema.addBiblioteca(biblia);
+		sistema.addBiblioteca(biblio);
+		demoRicercaArticoli("Tit", 1,null); // si e' reso necessario ai fini della dimostrazione invocare un metodo aggiuntivo
+		
+		System.out.println("\n# Esecuzione Uc3 -4d (ricerca con filtro: genere) #");
 		String fil[]=new String [2]; // utile per la simulazione filtri ottenuti dalla gui
 		fil[0]="";
 		fil[1]="Genere3";
-		demoRicercaArticoli("Titolo3", 1,null); // si e' reso necessario ai fini della dimostrazione invocare un metodo aggiuntivo 
 		demoRicercaArticoli(null,1,fil); // si e' reso necessario ai fini della dimostrazione invocare un metodo aggiuntivo 
+		
 		
 		/* Stampa di Fine Dimostrazione*/
 		System.out.println("\n\n##### FINE. Grazie per aver utilizzato la demo del Sistema di Gestione di una Biblioteca p9_facchinetti_lorenzo #####");
@@ -114,22 +112,7 @@ public class Demo {
 		}
 	}
 	
-	/**
-	 * Metodo aggiuntivo per la ricerca utente con id ( dato ottenuto da gui a regime )
-	 *
-	 * @param id the id
-	 */
-	public static void demoRicercaUtenteI (int id) {
-		Persona p;
-		p = sistema.ricercaUtente(id);
-		if (p == null ) {
-			System.out.println("Con i parametri forniti non e' stato trovato nessun utente"); 
-		} else {
-			System.out.println("I risultati ricerca con id=" + id +" sono:" );
-			System.out.println(p.getNome() + " " + p.getCognome() + " " +  p.getCodiceFiscale());
-    	
-		}
-	}
+
 	
 	/**
 	 * Metodo aggiuntivo per la ricerca articoli

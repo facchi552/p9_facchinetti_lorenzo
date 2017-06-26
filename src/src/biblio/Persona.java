@@ -78,17 +78,8 @@ public abstract class Persona {
 		this.sbuAppartenenza = sbuAppartenenza;
 	}
     
-    /**
-     * Operation.
-     *
-     * @param arg the arg
-     * @return boolean
-     */
-    public boolean ricercaPersona ( String arg ) {
-       return true;
-    }
     
-    /**
+     /**
      * Operation.
      *
      * @return boolean

@@ -60,44 +60,6 @@ public abstract class Articolo {
 		this.biblio = biblio;
 	}
      
-    /**
-     * Inserisce la Recensione.
-     * non implementato
-     * 
-     * @param recensione the recensione
-     */
-    public void inserisciRecensione ( Recensione recensione ) {
-    	
-    }
-    
-    /**
-     * Rimuove la Recensione. 
-     * non implementato
-     * 
-     * @param autore the autore
-     */
-    public void rimuoviRecensione ( UtenteRegistrato autore ) {
-       
-    }
-    
-    /**
-     * Inserisce la prenotazione.
-     * non implementato
-     * 
-     * @param utente the utente
-     */
-    public void prenota ( UtenteRegistrato utente ) {
-     
-    }
-    
-    /**
-     * Operation.
-     *
-     * @param utente the utente
-     */
-    public void rimuoviPrenotazione ( UtenteRegistrato utente ) {
-        
-    }
 
 	/**
 	 * Gets the titolo.
@@ -108,14 +70,7 @@ public abstract class Articolo {
 		return titolo;
 	}
 
-	/**
-	 * Gets the id.
-	 *
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
+	
 
 	/**
 	 * Gets the autore.
@@ -171,42 +126,7 @@ public abstract class Articolo {
 		this.collocazione = collocazione;
 	}
 
-	/**
-	 * Gets the recensioni.
-	 *
-	 * @return the recensioni
-	 */
-	public List<Recensione> getRecensioni() {
-		return recensioni;
-	}
-
-	/**
-	 * Sets the recensioni.
-	 *
-	 * @param recensioni the new recensioni
-	 */
-	public void setRecensioni(List<Recensione> recensioni) {
-		this.recensioni = recensioni;
-	}
-
-	/**
-	 * Gets the assegnatari.
-	 *
-	 * @return the assegnatari
-	 */
-	public List<UtenteRegistrato> getAssegnatari() {
-		return assegnatari;
-	}
-
-	/**
-	 * Sets the assegnatari.
-	 *
-	 * @param assegnatari the new assegnatari
-	 */
-	public void setAssegnatari(List<UtenteRegistrato> assegnatari) {
-		this.assegnatari = assegnatari;
-	}
-
+	
 	/**
 	 * Gets the biblio.
 	 *
