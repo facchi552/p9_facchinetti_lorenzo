@@ -11,4 +11,4 @@ Non è quindi da intendersi come errore di consegna il fatto che non siano prese
 Le coperture raggiunte, così come da richiesta sono del 100% per statement e branch coverage.
 La percentuale dichiarata è stata ottenuta mediante l'utilizzo del plugin per Eclipse EclEmma versione 2.3.3.
 
-#Grazie per l'attenzione.
+# Grazie per l'attenzione.
